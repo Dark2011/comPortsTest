@@ -73,11 +73,14 @@
     <ClCompile Include="qextserialenumerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_comPorts.cpp">
+    <ClCompile Include="GeneratedFiles\Debug\moc_myPorts.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_comPorts.cpp">
+    <ClCompile Include="GeneratedFiles\Release\moc_myPorts.cpp">
       <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="myPorts.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -93,7 +96,7 @@
     <CustomBuild Include="qextserialbase.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="comPorts.h">
+    <CustomBuild Include="myPorts.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

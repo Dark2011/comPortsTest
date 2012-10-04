@@ -4,7 +4,7 @@
 
 class Serial
 {
-    Q_OBJECT
+//    Q_OBJECT
 
 public:
     Serial(const PortSettings& settings, const QString& name);
