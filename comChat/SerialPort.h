@@ -1,13 +1,14 @@
 #pragma once
 #include <memory>
+#include <QtGui/QWidget>
 #include "qextserialport.h"
 
-class Serial
+class Serial : public QObject
 {
-//    Q_OBJECT
+  Q_OBJECT
 
 public:
-    Serial(const PortSettings& settings, const QString& name);
+    Serial(const PortSettings& settings, const QString& name, QWidget *parent = 0);
 
 public:
     virtual bool       Open();
@@ -21,6 +22,9 @@ public:
 
     virtual QByteArray Receive(unsigned size);
     virtual unsigned   Send(const QByteArray& data); 
+
+signals:
+	void readyRead();
 
 private:
     typedef std::tr1::shared_ptr<QextSerialPort> SerialPtr;

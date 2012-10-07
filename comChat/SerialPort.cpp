@@ -2,10 +2,11 @@
 #include "SerialPort.h"
 
 
-Serial::Serial(const PortSettings& settings, const QString& name)
-: _serial(new QextSerialPort(name, settings, QextSerialBase::EventDriven))
+Serial::Serial(const PortSettings& settings, const QString& name, QWidget *parent) 
+: QObject(parent),_serial(new QextSerialPort(name, settings, QextSerialBase::EventDriven))
 {
-    connect(_serial.get(), SIGNAL(readyRead()), this, SLOT(HasData()), Qt::DirectConnection);
+    /*connect(_serial.get(), SIGNAL(readyRead()), this, SLOT(HasData()), Qt::DirectConnection);*/
+	connect(_serial.get(), SIGNAL(readyRead()), this, SIGNAL(readyRead()));
 }
 
 bool Serial::Open()
@@ -244,3 +245,4 @@ FlowType Flow(const QString& flow)
 
 	return FLOW_OFF;
 }
+
