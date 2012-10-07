@@ -1,7 +1,7 @@
 
 #include <QtCore/QCoreApplication>
 #include "SerialPort.h"
-#include "comPorts.h"
+#include "myPorts.h"
 
 
 int main(int argc, char *argv[])
