@@ -2,6 +2,7 @@
 #include <QApplication>
 #include "SerialPort.h"
 #include "myPorts.h"
+#include <QtGui>
 
 int main(int argc, char *argv[])
 {
@@ -10,21 +11,20 @@ int main(int argc, char *argv[])
 	PortSettings mySet = {BAUD9600, DATA_8, PAR_NONE, STOP_1, FLOW_OFF, 500};
 
 	DataPort transmPort(mySet, "COM1");
-	transmPort.port->Open();
+	transmPort.openPort();
 
 	DataPort recievePort(mySet, "COM2");
-	recievePort.port->Open();
+	recievePort.openPort();
 
-
-	QString data = "StarCraf";
+	QString data = "StarCraft";
 	QByteArray byteArr = data.toAscii();
-	transmPort.port->Send(byteArr);
+
+	transmPort.sendData(byteArr);
 
 	QByteArray temp;
-	temp = recievePort.recData;
-	
+	temp = recievePort.getData();
 
-	transmPort.port->Close();
+	transmPort.closePort();
 	
 	return app.exec();
 }

@@ -2,26 +2,21 @@
 #include "SerialPort.h"
 #include <QtGui>
 
-class DataPort : QDialog
+class DataPort : public QObject
 {
 	Q_OBJECT
 
 public: 
-	DataPort(PortSettings& settings, const QString &name, QWidget *parent = 0) : QDialog(parent), portSet(settings)
-	{
-		port = new Serial(portSet, name);
-		recData = NULL;
-		connect(port, SIGNAL(readyRead()), this, SLOT(readData()));
-	}
+	DataPort(PortSettings& settings, const QString &name, QWidget *parent = 0);
+    void sendData(QByteArray &data);
+	void openPort();
+	void closePort();
+	const QByteArray& getData()const;
 
-	public slots:
-		void readData()
-		{
-		    unsigned availableData = port->DataAvailable();
-			recData = port->Receive(availableData);
-			port->Close();
-		}
-public:	
+private slots:
+	void readData();
+		 
+private:	
 	PortSettings portSet;
 	Serial* port;
 	QByteArray recData;
